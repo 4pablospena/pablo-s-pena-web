@@ -1,14 +1,14 @@
 <template>
   <div class="mt-8 space-y-6 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
     <p>
-      Me llamo Pablo y soy desarrollador frontend de España 🇪🇸. Me apasiona el
+      Me llamo Pablo y soy Product Engineer en Resizes. Me apasiona el
       desarrollo web y la creación de
-      <strong class="text-gray-900 dark:text-white font-semibold">experiencias digitales únicas e intuitivas</strong>.
+      <strong class="text-gray-900 dark:text-white font-semibold">experiencias digitales automatizadas, únicas e intuitivas</strong>.
     </p>
 
     <p>
       Trabajo con
-      <strong class="text-gray-900 dark:text-white font-semibold">Vue.js, TypeScript y herramientas modernas</strong>
+      <strong class="text-gray-900 dark:text-white font-semibold">Vue.js, TypeScript y herramientas modernas de IA </strong>
       para construir aplicaciones escalables y de calidad. Siempre estoy aprendiendo y
       buscando nuevas formas de mejorar como desarrollador.
     </p>

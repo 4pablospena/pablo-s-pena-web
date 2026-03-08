@@ -17,7 +17,7 @@ const currentYear = new Date().getFullYear()
           Sobre mí
         </a>
         <a
-          href="mailto:contacto@pablospena.dev"
+          href="mailto:4pablosuarezpena@gmail.com"
           class="text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
         >
           Contacto
