@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  font-family: 'Space Grotesk Variable', system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overscroll-behavior: none;
+  color: rgba(17, 17, 17, 0.9);
+}
+
+.dark body {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background-color: rgba(6, 182, 212, 0.2);
+}
+
+/* ── Gradient text utility ── */
+.text-gradient {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ── */
+.glass {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.dark .glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.dark .glass:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Section reveal animation ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Nav scroll animation ── */
+#header-nav {
+  animation: nav-blur linear both 0.5s;
+  animation-timeline: scroll();
+  animation-range: 0 400px;
+}
+
+@keyframes nav-blur {
+  to {
+    backdrop-filter: blur(20px);
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 9999px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.dark #header-nav {
+  animation: nav-blur-dark linear both 0.5s;
+  animation-timeline: scroll();
+  animation-range: 0 400px;
+}
+
+@keyframes nav-blur-dark {
+  to {
+    backdrop-filter: blur(20px);
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(24, 24, 27, 0.7);
+    border-radius: 9999px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ── Glow effect on hover ── */
+.glow-hover {
+  position: relative;
+}
+
+.glow-hover::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.glow-hover:hover::after {
+  opacity: 1;
+}
+
+/* ── Gradient line separator ── */
+.gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.3), transparent);
+}
