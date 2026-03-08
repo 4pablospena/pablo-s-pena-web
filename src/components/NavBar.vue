@@ -10,9 +10,11 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { title: 'Experiencia', label: 'experiencia', url: '/#experiencia' },
+  { title: 'Estudios', label: 'estudios', url: '/#estudios' },
   { title: 'Proyectos', label: 'proyectos', url: '/#proyectos' },
+  { title: 'Stack', label: 'stack', url: '/#stack' },
   { title: 'Sobre mí', label: 'sobre-mi', url: '/#sobre-mi' },
-  { title: 'Contacto', label: 'contacto', url: 'mailto:contacto@pablospena.dev' },
+  { title: 'Contacto', label: 'contacto', url: '/#contacto' },
 ]
 
 const activeSection = ref('')
@@ -20,7 +22,7 @@ let observer: IntersectionObserver | null = null
 
 function setupScrollSpy() {
   const sections = document.querySelectorAll('section[data-section]')
-  observer = new IntersectionObserver(
+  const obs = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -30,7 +32,8 @@ function setupScrollSpy() {
     },
     { root: null, rootMargin: '0px', threshold: 0.3 },
   )
-  sections.forEach((section) => observer!.observe(section))
+  observer = obs
+  sections.forEach((section) => obs.observe(section))
 }
 
 onMounted(setupScrollSpy)

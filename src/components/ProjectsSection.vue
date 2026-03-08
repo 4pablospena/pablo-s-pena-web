@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+import { CONTACT } from '@/constants'
+import CodeIcon from './icons/CodeIcon.vue'
 import GitHubIcon from './icons/GitHubIcon.vue'
 import LinkIcon from './icons/LinkIcon.vue'
 import LinkButton from './LinkButton.vue'
@@ -20,15 +22,25 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  // Añade tus proyectos aquí
+  {
+    title: 'Vue Todo List',
+    description:
+      'Aplicación para gestionar tareas. Añade tareas, márcalas como completadas y mantente organizado.',
+    github: 'https://github.com/4pablospena/to-do-list',
+    image: '/todo-list.png',
+    tags: [
+      { name: 'Vue', class: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300', icon: CodeIcon },
+      { name: 'TypeScript', class: 'bg-blue-100 text-blue-800 dark:bg-blue-950/50 dark:text-blue-300', icon: CodeIcon },
+    ],
+  },
 ]
 </script>
 
 <template>
   <div class="flex flex-col gap-6 mt-8">
     <article
-      v-for="(project, i) in PROJECTS"
-      :key="i"
+      v-for="project in PROJECTS"
+      :key="project.github ?? project.title"
       class="glass rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg group"
     >
       <div class="flex flex-col md:flex-row">
@@ -70,5 +82,15 @@ const PROJECTS: Project[] = [
         </div>
       </div>
     </article>
+
+    <a
+      :href="CONTACT.github"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center justify-center gap-2 px-4 py-4 rounded-xl glass transition-all duration-300 hover:shadow-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+    >
+      <GitHubIcon class="size-5 shrink-0" />
+      <span class="text-sm font-medium">Próximamente más proyectos...</span>
+    </a>
   </div>
 </template>

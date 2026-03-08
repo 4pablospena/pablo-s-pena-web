@@ -49,25 +49,36 @@ function closeMenu() {
   isMenuOpen.value = false
 }
 
+function handleKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') {
+    isMenuOpen.value = false
+  }
+}
+
 onMounted(() => {
   updateTheme()
   matchMedia.addEventListener('change', updateTheme)
   document.addEventListener('click', closeMenu)
+  document.addEventListener('keydown', handleKeydown)
 })
 
 onUnmounted(() => {
   matchMedia.removeEventListener('change', updateTheme)
   document.removeEventListener('click', closeMenu)
+  document.removeEventListener('keydown', handleKeydown)
 })
 </script>
 
 <template>
   <div class="relative ml-1 mr-1">
     <button
+      type="button"
+      :aria-expanded="isMenuOpen"
+      aria-haspopup="menu"
+      aria-label="Elige el tema"
       class="appearance-none border-none flex hover:scale-125 transition"
       @click="toggleMenu"
     >
-      <span class="sr-only">Elige el tema</span>
       <SunIcon
         class="size-5 transition-all"
         :style="{ scale: currentTheme === 'light' ? '1' : '0', position: currentTheme === 'light' ? 'static' : 'absolute' }"
@@ -83,16 +94,20 @@ onUnmounted(() => {
     </button>
     <div
       v-show="isMenuOpen"
+      role="menu"
+      aria-label="Opciones de tema"
       class="absolute top-8 right-0 text-sm p-1.5 min-w-[8rem] rounded-xl glass shadow-lg animate-scale-up"
     >
-      <ul>
-        <li
-          v-for="theme in THEMES"
-          :key="theme"
-          class="px-2.5 py-1.5 cursor-default hover:bg-gray-200/60 dark:hover:bg-white/5 rounded-lg transition-colors"
-          @click="selectTheme(theme)"
-        >
-          {{ THEME_LABELS[theme] }}
+      <ul role="none">
+        <li v-for="theme in THEMES" :key="theme" role="none">
+          <button
+            type="button"
+            role="menuitem"
+            class="w-full text-left px-2.5 py-1.5 rounded-lg transition-colors hover:bg-gray-200/60 dark:hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/50"
+            @click="selectTheme(theme)"
+          >
+            {{ THEME_LABELS[theme] }}
+          </button>
         </li>
       </ul>
     </div>
